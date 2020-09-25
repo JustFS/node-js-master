@@ -31,13 +31,27 @@
             <input type="hidden" name="identifiant" value="{{livre._id}}">
             <input type="submit" class="btn btn-primary w-100" value="Valider">
         </form>
+        <form method="POST" action="/livres/updateImage" enctype="multipart/form-data">
+            <input type="hidden" name="identifiant" value="{{livre._id}}">
+            <h2>Images : </h2>
+            <div class="row">
+                <img src="/images/{{livre.image}}" class="col-3">
+                <div class="col-9">
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control-file" id="image" name="image">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Modifier l'image">
+                </div>
+            </div>
+        </form>
     {% else %}
         <div class="row m-2">
             <div class="col-6">
                 <h2>Informations : </h2>
                 <div>Auteur : {{livre.auteur}}</div>
                 <div>Nombre de pages : {{livre.pages}}</div>
-                <img src="https://picsum.photos/200/200">
+                <img src="/images/{{livre.image}}">
             </div>
             <div class="col-6">
                 <h2>Résumé : </h2>

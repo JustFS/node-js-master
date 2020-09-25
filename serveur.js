@@ -1,10 +1,13 @@
 const express = require("express");
 const server = express();
 const morgan = require("morgan");
-const router = require("./routeur");
+const routerLivre = require("./routeurs/livres.routeur");
+const routerGlobal = require("./routeurs/global.routeur");
+const routerAuteur = require("./routeurs/auteurs.routeur");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+
 server.use(session({
     secret: 'keyboard cat',
     resave: true,
@@ -25,7 +28,10 @@ server.use((requete, reponse, suite) => {
     suite();
 })
 
-server.use("/",router);
+server.use("/livres/",routerLivre);
+server.use("/auteurs/",routerAuteur);
+
+server.use("/",routerGlobal);
 
 server.listen(3000);
 
